@@ -1,0 +1,28 @@
+
+
+.menu
+{
+	border: 1px solid grey;
+	border-radius: 10px;
+	width: 12%;
+	float: left;
+	margin-left: 10px;
+}
+
+.content
+{
+	position: absolute;
+	border-radius: 10px;
+	border: 1px solid grey;
+	left: 50%; /* Отступ в процентах от левого края окна */
+	width: 75%; /* Ширина блока */
+	height: 75%; /* Высота блока */
+	margin-left: -35%; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
+}
+}
+
+.navbar-brand
+{
+
+
+}
