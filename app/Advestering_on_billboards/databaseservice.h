@@ -11,25 +11,28 @@ struct Orders
     {
         OrderID = otherOrders.OrderID;
         Type = otherOrders.Type;
-        ClientID = otherOrders.ClientID;
+        ClientName = otherOrders.ClientName;
         Date = otherOrders.Date;
+        CompleteDate = otherOrders.CompleteDate;
         Status = otherOrders.Status;
     }
 
-    Orders(int orderID, int type, int clientID, QString date, int status)
+    Orders(int orderID, int type, QString clientname, QString date, QString completedate, int status)
     {
         OrderID = orderID;
         Type = type;
-        ClientID = clientID;
+        ClientName = clientname;
         Date = date;
+        CompleteDate = completedate;
         Status = status;
 
     }
 
     int OrderID;
     int Type;
-    int ClientID;
+    QString ClientName;
     QString Date;
+    QString CompleteDate;
     int Status;
 };
 
