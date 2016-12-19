@@ -10,30 +10,30 @@ struct Orders
     Orders(const Orders& otherOrders)
     {
         OrderID = otherOrders.OrderID;
-        Type = otherOrders.Type;
         ClientName = otherOrders.ClientName;
         Date = otherOrders.Date;
         CompleteDate = otherOrders.CompleteDate;
         Status = otherOrders.Status;
+        Filename = otherOrders.Filename;
     }
 
-    Orders(int orderID, int type, QString clientname, QString date, QString completedate, int status)
+    Orders(int orderID, QString clientname, QString date, QString completedate, QString status, QString filename)
     {
         OrderID = orderID;
-        Type = type;
         ClientName = clientname;
         Date = date;
         CompleteDate = completedate;
         Status = status;
+        Filename = filename;
 
     }
 
     int OrderID;
-    int Type;
     QString ClientName;
     QString Date;
     QString CompleteDate;
-    int Status;
+    QString Status;
+    QString Filename;
 };
 
 class DataBaseService

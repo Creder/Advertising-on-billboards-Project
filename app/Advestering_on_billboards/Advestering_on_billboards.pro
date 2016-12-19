@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,10 +13,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    databaseservice.cpp
+    databaseservice.cpp \
+    image_view.cpp
 
 HEADERS  += mainwindow.h \
-    databaseservice.h
+    databaseservice.h \
+    image_view.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    image_view.ui
 

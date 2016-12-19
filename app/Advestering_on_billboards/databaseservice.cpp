@@ -13,7 +13,7 @@ QSqlDatabase DataBaseService::OpenDatabase()
     bool connected =  db.open();
     if (connected == true)
         {
-          qDebug() << "Ok1";
+          qDebug() << "Connected";
         }
     else
         {
@@ -25,22 +25,19 @@ QSqlDatabase DataBaseService::OpenDatabase()
 
 std::vector<Orders> DataBaseService::Select_Orders()
 {
-
-
     QSqlQuery sqlQuery = QSqlQuery(OpenDatabase());
 
-    sqlQuery.exec("call Select_Orders()");
+    sqlQuery.exec("call Select_orders()");
     std::vector<Orders> result;
     while(sqlQuery.next())
     {
         int orderID = sqlQuery.value("id").toInt();
-        int type = sqlQuery.value("type_id").toInt();
         QString clientname = sqlQuery.value("user_id").toString();
         QString date = sqlQuery.value("filing_date").toString();
+        QString status = sqlQuery.value("order_status").toString();
         QString completedate = sqlQuery.value("complete_date").toString();
-        int status = sqlQuery.value("order_status").toInt();
-        result.push_back(Orders(orderID, type, clientname, date, completedate, status));
-        qDebug() << orderID;
+        QString filename = sqlQuery.value("filename").toString();
+        result.push_back(Orders(orderID, clientname, date, completedate, status, filename));
     }
 
     return result;
