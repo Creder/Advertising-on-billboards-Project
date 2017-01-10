@@ -7,7 +7,8 @@
 void  MainWindow::SetupTables()
 {
 
-    Orders_table = new QStandardItemModel;
+    Orders_model = new QStandardItemModel;
+    Markers_model = new QStandardItemModel;
 
     QStringList horizontalHeader_orders;
     horizontalHeader_orders.append("№ Заказа");
@@ -17,7 +18,12 @@ void  MainWindow::SetupTables()
     horizontalHeader_orders.append("Дата выполнения");
     horizontalHeader_orders.append("Файл");
 
-    Orders_table->setHorizontalHeaderLabels(horizontalHeader_orders);
+    QStringList horizontalHeader_markers;
+    horizontalHeader_markers.append("Адрес");
+    horizontalHeader_markers.append("Статус");
+
+    Orders_model->setHorizontalHeaderLabels(horizontalHeader_orders);
+    Markers_model->setHorizontalHeaderLabels(horizontalHeader_markers);
 
     ui->OrdersTable->addAction(ui->actionRefresh);
     ui->OrdersTable->addAction(ui->actionCompleted);
@@ -25,25 +31,36 @@ void  MainWindow::SetupTables()
     ui->OrdersTable->addAction(ui->actionInProcess);
     ui->OrdersTable->addAction(ui->actionOpen_File);
 
-    ui->OrdersTable->setModel(Orders_table);
+    ui->OrdersTable->setModel(Orders_model);
     ui->OrdersTable->setColumnHidden(5, true);
 
+    ui->MarkersTable->setModel(Markers_model);
 }
 
 
 void MainWindow::RefreshOrders()
 {
     //Orders_table->clear();
-    DataBaseService service;
     auto orders = service.Select_Orders();
     for (int rowIndex = 0; rowIndex < orders.size(); rowIndex++)
     {
-        Orders_table->setItem(rowIndex, 0, new QStandardItem(QString::number(orders[rowIndex].OrderID)));
-        Orders_table->setItem(rowIndex, 1, new QStandardItem(orders[rowIndex].ClientName));
-        Orders_table->setItem(rowIndex, 2, new QStandardItem(orders[rowIndex].Date));
-        Orders_table->setItem(rowIndex, 3, new QStandardItem(orders[rowIndex].Status));
-        Orders_table->setItem(rowIndex, 4, new QStandardItem(orders[rowIndex].CompleteDate));
-        Orders_table->setItem(rowIndex, 5, new QStandardItem(orders[rowIndex].Filename));
+       Orders_model->setItem(rowIndex, 0, new QStandardItem(QString::number(orders[rowIndex].OrderID)));
+        Orders_model->setItem(rowIndex, 1, new QStandardItem(orders[rowIndex].ClientName));
+        Orders_model->setItem(rowIndex, 2, new QStandardItem(orders[rowIndex].Date));
+        Orders_model->setItem(rowIndex, 3, new QStandardItem(orders[rowIndex].Status));
+        Orders_model->setItem(rowIndex, 4, new QStandardItem(orders[rowIndex].CompleteDate));
+        Orders_model->setItem(rowIndex, 5, new QStandardItem(orders[rowIndex].Filename));
+    }
+}
+
+void MainWindow::RefreshMarkers()
+{
+    //Orders_table->clear();
+    auto markers = service.Select_Markers();
+    for (int rowIndex = 0; rowIndex < markers.size(); rowIndex++)
+    {
+        Markers_model->setItem(rowIndex, 0, new QStandardItem(markers[rowIndex].Markername));
+        Markers_model->setItem(rowIndex, 1, new QStandardItem(markers[rowIndex].Status));
     }
 }
 
@@ -59,7 +76,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpen_File, SIGNAL(triggered()), this, SLOT(onButtonSend()));
     connect(this, SIGNAL(sendData(QString)), imageform, SLOT(recieveData(QString)));
     SetupTables();
+    service.connect();
+    RefreshMarkers();
     RefreshOrders();
+
 
 }
 
@@ -89,3 +109,5 @@ void MainWindow::onButtonSend()
     QString name = ui->OrdersTable->model()->data(ui->OrdersTable->model()->index(row,5)).toString();
     emit sendData(name);
 }
+
+

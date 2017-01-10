@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>587</width>
-    <height>503</height>
+    <width>575</width>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AgAdver</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
-       <string>GroupBox</string>
+       <string/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
@@ -74,8 +74,8 @@
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QTableView" name="tableView"/>
-          <widget class="QWebEngineView" name="preview" native="true"/>
+          <widget class="QTableView" name="MarkersTable"/>
+          <widget class="MapView" name="mapWidget" native="true"/>
          </widget>
         </item>
        </layout>
@@ -89,7 +89,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>587</width>
+     <width>575</width>
      <height>21</height>
     </rect>
    </property>
@@ -132,9 +132,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QWebEngineView</class>
+   <class>MapView</class>
    <extends>QWidget</extends>
-   <header>qwebengineview.h</header>
+   <header>mapview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

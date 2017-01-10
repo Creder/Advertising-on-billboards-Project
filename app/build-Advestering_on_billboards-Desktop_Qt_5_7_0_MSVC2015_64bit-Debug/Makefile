@@ -234,6 +234,7 @@ Makefile: ..\Advestering_on_billboards\Advestering_on_billboards.pro ..\..\..\..
 		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Quick.prl \
 		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Widgets.prl \
 		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Gui.prl \
+		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Xml.prl \
 		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Sql.prl \
 		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5WebChannel.prl \
 		..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Qml.prl \
@@ -401,6 +402,7 @@ Makefile: ..\Advestering_on_billboards\Advestering_on_billboards.pro ..\..\..\..
 ..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Quick.prl:
 ..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Widgets.prl:
 ..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Gui.prl:
+..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Xml.prl:
 ..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Sql.prl:
 ..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5WebChannel.prl:
 ..\..\..\..\Qt\Qt5.7.0\5.7\msvc2015_64\lib\Qt5Qml.prl:

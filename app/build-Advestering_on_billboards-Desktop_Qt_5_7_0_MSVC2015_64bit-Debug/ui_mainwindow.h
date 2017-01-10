@@ -27,7 +27,7 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "qwebengineview.h"
+#include "mapview.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -53,8 +53,8 @@ public:
     QWidget *page_2;
     QHBoxLayout *horizontalLayout;
     QSplitter *splitter;
-    QTableView *tableView;
-    QWebEngineView *preview;
+    QTableView *MarkersTable;
+    MapView *mapWidget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -63,7 +63,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(587, 503);
+        MainWindow->resize(575, 544);
         actionCompleted = new QAction(MainWindow);
         actionCompleted->setObjectName(QStringLiteral("actionCompleted"));
         actionCanseled = new QAction(MainWindow);
@@ -127,12 +127,12 @@ public:
         splitter = new QSplitter(page_2);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
-        tableView = new QTableView(splitter);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        splitter->addWidget(tableView);
-        preview = new QWebEngineView(splitter);
-        preview->setObjectName(QStringLiteral("preview"));
-        splitter->addWidget(preview);
+        MarkersTable = new QTableView(splitter);
+        MarkersTable->setObjectName(QStringLiteral("MarkersTable"));
+        splitter->addWidget(MarkersTable);
+        mapWidget = new MapView(splitter);
+        mapWidget->setObjectName(QStringLiteral("mapWidget"));
+        splitter->addWidget(mapWidget);
 
         horizontalLayout->addWidget(splitter);
 
@@ -143,7 +143,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 587, 21));
+        menuBar->setGeometry(QRect(0, 0, 575, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -164,13 +164,13 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "AgAdver", 0));
         actionCompleted->setText(QApplication::translate("MainWindow", "Completed", 0));
         actionCanseled->setText(QApplication::translate("MainWindow", "Canseled", 0));
         actionInProcess->setText(QApplication::translate("MainWindow", "InProcess", 0));
         actionRefresh->setText(QApplication::translate("MainWindow", "Refresh", 0));
         actionOpen_File->setText(QApplication::translate("MainWindow", "Open File", 0));
-        groupBox->setTitle(QApplication::translate("MainWindow", "GroupBox", 0));
+        groupBox->setTitle(QString());
         pushButton_2->setText(QApplication::translate("MainWindow", "\320\232\320\260\321\200\321\202\320\260", 0));
         pushButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\272\320\260\320\267\321\213", 0));
     } // retranslateUi

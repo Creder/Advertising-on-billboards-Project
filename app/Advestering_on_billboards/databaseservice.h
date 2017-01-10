@@ -36,12 +36,36 @@ struct Orders
     QString Filename;
 };
 
+struct Markers
+{
+    Markers(const Markers& otherMarkers)
+    {
+        Markername = otherMarkers.Markername;
+        Status = otherMarkers.Status;
+    }
+
+    Markers(QString markername,QString status)
+    {
+        Markername = markername;
+        Status = status;
+
+    }
+
+    QString Markername;
+    QString Status;
+    QString Filename;
+
+};
 class DataBaseService
 {
 private:
     QSqlDatabase OpenDatabase();
+
+    QSqlQuery Query;
 public:
     std::vector<Orders> Select_Orders();
+    std::vector<Markers> Select_Markers();
+    void connect();
 
 
 };

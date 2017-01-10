@@ -23,21 +23,38 @@ QSqlDatabase DataBaseService::OpenDatabase()
     return db;
 }
 
-std::vector<Orders> DataBaseService::Select_Orders()
+void DataBaseService::connect()
 {
-    QSqlQuery sqlQuery = QSqlQuery(OpenDatabase());
+   Query = QSqlQuery(OpenDatabase());
+}
 
-    sqlQuery.exec("call Select_orders()");
+std::vector<Orders> DataBaseService::Select_Orders()
+{ 
+    Query.exec("call Select_Orders()");
     std::vector<Orders> result;
-    while(sqlQuery.next())
+    while(Query.next())
     {
-        int orderID = sqlQuery.value("id").toInt();
-        QString clientname = sqlQuery.value("user_id").toString();
-        QString date = sqlQuery.value("filing_date").toString();
-        QString status = sqlQuery.value("order_status").toString();
-        QString completedate = sqlQuery.value("complete_date").toString();
-        QString filename = sqlQuery.value("filename").toString();
+        int orderID = Query.value("id").toInt();
+        QString clientname = Query.value("user_id").toString();
+        QString date = Query.value("filing_date").toString();
+        QString status = Query.value("order_status").toString();
+        QString completedate = Query.value("complete_date").toString();
+        QString filename = Query.value("filename").toString();
         result.push_back(Orders(orderID, clientname, date, completedate, status, filename));
+    }
+
+    return result;
+}
+
+std::vector<Markers> DataBaseService::Select_Markers()
+{
+    Query.exec("call Select_Markers()");
+    std::vector<Markers> result;
+    while(Query.next())
+    {
+        QString name = Query.value("name").toString();
+        QString status = Query.value("status").toString();
+        result.push_back(Markers( name, status));
     }
 
     return result;
